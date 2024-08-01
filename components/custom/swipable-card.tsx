@@ -17,7 +17,7 @@ import Link from "next/link";
 
 interface SwipeableCardProps {
   task: Task;
-  searchTerm?: string;
+  className?:string
 }
 
 export const getPriorityColor = (priority: string | undefined) => {
@@ -33,7 +33,7 @@ export const getPriorityColor = (priority: string | undefined) => {
   }
 };
 
-const SwipeableCard: React.FC<SwipeableCardProps> = ({ task }) => {
+const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
   const { toast } = useToast();
   const [swiped, setSwiped] = useState<boolean>(false);
   const router = useRouter();
@@ -84,7 +84,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task }) => {
   };
 
   return (
-    <Card {...handlers} className="relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white">
+    <Card {...handlers} className={cn("relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white",className)}>
       <div
         className={cn(
           "p-4 rounded-lg transition-transform duration-300 ease-in-out",

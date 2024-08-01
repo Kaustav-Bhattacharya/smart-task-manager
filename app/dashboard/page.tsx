@@ -6,7 +6,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Task } from "../page";
 import { cn } from "@/lib/utils";
-import { getPriorityColor } from "@/components/custom/swipable-card";
+import SwipeableCard, {
+  getPriorityColor,
+} from "@/components/custom/swipable-card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, CheckCircle, Circle, MapPin } from "lucide-react";
 
@@ -21,12 +23,6 @@ const Dashboard = () => {
       </div>
     );
   }
-  const upcomingTasks = tasks
-    .filter((task) => new Date(task.dueDate) > new Date())
-    .sort(
-      (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-    )
-    .slice(0, 5);
 
   return (
     <div className="w-full">
@@ -46,16 +42,7 @@ const Dashboard = () => {
           <StatusBucket status="uncompleted" tasks={tasks} />
         </div>
         <div className="p-5">
-          <div className="container border rounded-lg p-5">
-            <h1 className="font-semibold text-xl text-blue-500 p-2 md:p-4">
-              Upcoming Tasks
-            </h1>
-            <div className="p-2 flex gap-2 flex-col md:p-4">
-              {upcomingTasks.map((task) => (
-                <DashboardTaskCard key={task.id} task={task} />
-              ))}
-            </div>
-          </div>
+          <UpcomingTasks tasks={tasks} />
         </div>
       </div>
     </div>
@@ -138,6 +125,28 @@ const StatusBucket = ({
       <div className="p-2 flex gap-2 flex-col md:p-4">
         {filteredTasks.map((task) => (
           <DashboardTaskCard key={task.id} task={task} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const UpcomingTasks = ({ tasks }: { tasks: Task[] }) => {
+  const upcomingTasks = tasks
+    .filter((task) => new Date(task.dueDate) > new Date() && !task.completed)
+    .sort(
+      (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+    )
+    .slice(0, 5);
+
+  return (
+    <div className="container border rounded-lg p-5">
+      <h1 className="font-semibold text-xl text-blue-500 p-2 md:p-4">
+        Upcoming Tasks
+      </h1>
+      <div className="p-2 flex gap-2 flex-col md:p-4">
+        {upcomingTasks.map((task) => (
+          <SwipeableCard className="z-0" key={task.id} task={task} />
         ))}
       </div>
     </div>
