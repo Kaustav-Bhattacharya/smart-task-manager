@@ -1,4 +1,5 @@
 "use client";
+import { DashBarChart, DashLineChart, DashPieChart } from "@/components/custom/dashboard-charts";
 import { PriorityBucket, StatusBucket, UpcomingTasks } from "@/components/custom/dashboard-components";
 import Header from "@/components/custom/header";
 import { RootState } from "@/lib/redux/store";
@@ -21,6 +22,17 @@ const Dashboard = () => {
     <div className="w-full">
       <Header heading="Dashboard" />
       <div className="overflow-auto h-[calc(100vh-150px)] md:h-[calc(100vh-140px)]">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 p-5">
+          <div className="col-span-1">
+          <DashLineChart/>
+          </div>
+          <div className="col-span-1">
+          <DashPieChart/>
+          </div>
+          <div className="col-span-1">
+          <DashBarChart/>
+          </div>
+        </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 p-5">
           <PriorityBucket
             priority="High"

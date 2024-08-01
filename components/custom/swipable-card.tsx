@@ -129,19 +129,19 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
       </div>
       <div
         id={`task-options-${task.id}`}
-        className="task-options absolute top-0 right-0 flex flex-col items-center space-y-2 p-2 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+        className="task-options absolute top-0 right-0 flex flex-col items-center opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
       >
         <Button
           onClick={handleEdit}
           variant="ghost"
-          className="text-green-500 hover:bg-green-100"
+          className="text-green-500"
         >
           <Pen size={15} />
         </Button>
         <Button
           onClick={handleRemove}
           variant="ghost"
-          className="text-red-500 hover:bg-red-100"
+          className="text-red-500 "
         >
           <Trash size={15} />
         </Button>
