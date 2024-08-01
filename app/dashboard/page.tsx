@@ -12,16 +12,28 @@ type Props = {};
 const Dashboard = (props: Props) => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
+  if (tasks.length <= 0) {
+    return (
+      <div className="container w-full">
+        <Header heading="Dashboard" />
+        <div className="font-semibold text-xl p-5">Start by adding tasks.</div>
+      </div>
+    );
+  }
   return (
     <div className="container w-full">
       <Card>
         <Header heading="Dashboard" />
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 my-2 grid-cols-1">
-          <PriorityBucket priority="High" tasks={tasks} className="md:col-span-2" />
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 p-5">
+          <PriorityBucket
+            priority="High"
+            tasks={tasks}
+            className="md:col-span-2 lg:col-span-1"
+          />
           <PriorityBucket priority="Medium" tasks={tasks} />
           <PriorityBucket priority="Low" tasks={tasks} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 my-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-5">
           <StatusBucket status="completed" tasks={tasks} />
           <StatusBucket status="uncompleted" tasks={tasks} />
         </div>

@@ -16,7 +16,7 @@ export type Task = {
   title: string;
   priority: string;
   completed?: boolean;
-  location: string
+  location: string;
 };
 
 const Home: React.FC = () => {
@@ -32,6 +32,30 @@ const Home: React.FC = () => {
   const handleAddTask = () => {
     router.push(`/new-task`);
   };
+
+  if (tasks.length <= 0) {
+    return (
+      <div className="container w-full">
+        <header className="bg-white shadow-md p-4 flex items-center justify-between sticky">
+          <h1 className="text-2xl font-bold">Task Manager</h1>
+          <Input
+            type="text"
+            placeholder="Search tasks..."
+            className="border rounded p-2 w-[50%] lg:w-[30%]"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </header>
+        <div className="font-semibold text-xl p-5">Start by adding tasks.</div>
+        <Button
+          onClick={handleAddTask}
+          className="fixed bottom-10 right-14 bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-white shadow-lg hover:bg-purple-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 z-10"
+        >
+          <Plus size={26} />
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen container bg-gray-100">
@@ -57,7 +81,7 @@ const Home: React.FC = () => {
         </div>
         <Button
           onClick={handleAddTask}
-          className="fixed bottom-10 right-5 bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-white shadow-lg hover:bg-purple-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 z-10"
+          className="fixed bottom-14 md:bottom-10 right-1 md:right-5 bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-white shadow-lg hover:bg-purple-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 z-10"
         >
           <Plus size={26} />
         </Button>
