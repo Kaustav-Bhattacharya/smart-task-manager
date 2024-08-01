@@ -17,7 +17,7 @@ import Link from "next/link";
 
 interface SwipeableCardProps {
   task: Task;
-  searchTerm: string;
+  searchTerm?: string;
 }
 
 export const getPriorityColor = (priority: string | undefined) => {
