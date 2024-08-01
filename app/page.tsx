@@ -25,9 +25,11 @@ const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
 
-  const filteredTasks = tasks.filter((task) =>
+  const filteredTasks = tasks
+  .filter((task) =>
     task.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-  );
+  )
+  .sort((a, b) => (a.completed ? 1 : 0) - (b.completed ? 1 : 0));
 
   const handleAddTask = () => {
     router.push(`/new-task`);
