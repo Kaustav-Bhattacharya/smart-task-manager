@@ -17,7 +17,7 @@ import Link from "next/link";
 
 interface SwipeableCardProps {
   task: Task;
-  className?:string
+  className?: string;
 }
 
 export const getPriorityColor = (priority: string | undefined) => {
@@ -84,7 +84,13 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
   };
 
   return (
-    <Card {...handlers} className={cn("relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white",className)}>
+    <Card
+      {...handlers}
+      className={cn(
+        "relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white",
+        className
+      )}
+    >
       <div
         className={cn(
           "p-4 rounded-lg transition-transform duration-300 ease-in-out",
@@ -117,7 +123,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
                 "text-gray-300": task.completed,
               })}
             >
-              Due: {format(new Date(task.dueDate), 'MMMM dd, yyyy')}
+              Due: {format(new Date(task.dueDate), "MMMM dd, yyyy")}
             </p>
           </Link>
           <Checkbox
@@ -134,14 +140,14 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
         <Button
           onClick={handleEdit}
           variant="ghost"
-          className="text-green-500"
+          className="text-green-500 hover:bg-transparent hover:text-green-500"
         >
           <Pen size={15} />
         </Button>
         <Button
           onClick={handleRemove}
           variant="ghost"
-          className="text-red-500 "
+          className="text-red-500 hover:bg-transparent hover:text-red-500"
         >
           <Trash size={15} />
         </Button>
