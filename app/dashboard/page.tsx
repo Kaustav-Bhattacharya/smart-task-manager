@@ -18,6 +18,7 @@ const Dashboard = () => {
     );
   }
 
+
   return (
     <div className="w-full">
       <Header heading="Dashboard" />
@@ -55,4 +56,4 @@ const Dashboard = () => {
 };
 
 
-export default Dashboard;
+export default Dashboard

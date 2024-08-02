@@ -32,17 +32,20 @@ export const getUserLocation = (): Promise<GeolocationPosition> => {
   export const requestNotificationPermission = async () => {
     if ("Notification" in window) {
       const permission = await Notification.requestPermission();
+
       return permission === "granted";
     }
     return false;
   };
   
+  let notifiedTasks = new Set<string>();
+
   export const notifyNearbyTasks = async (tasks: Task[]) => {
     try {
       const userLocation = await getUserLocation();
       const userLat = userLocation.coords.latitude;
       const userLng = userLocation.coords.longitude;
-  
+
       const nearbyTasks = tasks.filter((task) => {
         if (task.lat && task.lng) {
           const distance = getDistanceFromLatLngInKm(
@@ -51,18 +54,33 @@ export const getUserLocation = (): Promise<GeolocationPosition> => {
             task.lat,
             task.lng
           );
-          return distance <= 5; // 5 km radius
+          const isUpcoming = new Date(task.dueDate) > new Date();
+          return distance <= 5 && isUpcoming; // 5 km radius and upcoming
         }
         return false;
       });
-  
-      if (nearbyTasks.length > 0) {
-        nearbyTasks.forEach((task) => {
-          new Notification(`Task "${task.title}" is nearby!`);
-        });
-      }
+
+      nearbyTasks.forEach((task) => {
+        if (!notifiedTasks.has(task.id)) {
+          new Notification(`Upcoming Task "${task.title}" is nearby!`);
+          notifiedTasks.add(task.id);
+        }
+      });
     } catch (error) {
       console.error("Error getting user location:", error);
     }
   };
   
+  export const startTaskNotificationService = (tasks: Task[]) => {
+    const checkInterval = 60 * 60 * 1000; // Check every hour
+
+    const checkNearbyTasks = async () => {
+      const permissionGranted = await requestNotificationPermission();
+      if (permissionGranted) {
+        await notifyNearbyTasks(tasks);
+      }
+    };
+
+    checkNearbyTasks(); // Initial check
+    setInterval(checkNearbyTasks, checkInterval); // Periodic checks
+  };

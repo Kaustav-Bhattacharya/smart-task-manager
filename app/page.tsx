@@ -1,6 +1,6 @@
 "use client";
 import useDebounce from "@/lib/hooks/useDebouce";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/lib/redux/store";
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import SwipeableCard from "@/components/custom/swipable-card";
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
+import { startTaskNotificationService } from "@/lib/locationNotifications";
 
 export type Task = {
   description: string;
@@ -36,6 +37,10 @@ const Home: React.FC = () => {
   const handleAddTask = () => {
     router.push(`/new-task`);
   };
+
+  useEffect(() => {
+    startTaskNotificationService(tasks);
+  }, [tasks]);
 
   if (tasks.length <= 0) {
     return (
