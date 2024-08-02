@@ -67,8 +67,8 @@ const StatusBucket = ({
         </h1>
         <div className="p-2 md:p-4 text-center font-semibold">
           {status === "completed"
-            ? "No Completed Tasks."
-            : "No Uncompleted Tasks."}
+            ? "Go on! No completed tasks."
+            : "Greate! No uncompleted tasks for now."}
         </div>
       </div>
     );
@@ -94,6 +94,12 @@ const UpcomingTasks = ({ tasks }: { tasks: Task[] }) => {
       (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
     )
     .slice(0, 5);
+
+    if(upcomingTasks.length > 0) {
+      return <h1 className="font-semibold text-xl text-blue-500 p-2 md:p-4">
+      No upcoming tasks for now.
+    </h1>
+    }
 
   return (
     <div className="container border rounded-lg p-5">
