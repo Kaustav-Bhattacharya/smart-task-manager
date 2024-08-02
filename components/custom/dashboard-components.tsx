@@ -95,10 +95,17 @@ const UpcomingTasks = ({ tasks }: { tasks: Task[] }) => {
     )
     .slice(0, 5);
 
-    if(upcomingTasks.length > 0) {
-      return <h1 className="font-semibold text-xl text-blue-500 p-2 md:p-4">
-      No upcoming tasks for now.
-    </h1>
+    if(upcomingTasks.length <= 0) {
+      return (
+        <>
+          <h1 className="font-semibold text-xl text-blue-500 p-2 md:p-4">
+            Upcoming Tasks
+          </h1>
+          <div className="font-semibold p-2 md:p-4">
+            No upcoming tasks for now.
+          </div>
+        </>
+      );
     }
 
   return (
