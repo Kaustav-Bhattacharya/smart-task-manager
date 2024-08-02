@@ -62,7 +62,7 @@ export const getUserLocation = (): Promise<GeolocationPosition> => {
 
       nearbyTasks.forEach((task) => {
         if (!notifiedTasks.has(task.id)) {
-          new Notification(`Upcoming Task "${task.title}" is nearby!`);
+          new Notification(`Upcoming Task "${task.title}"!`);
           notifiedTasks.add(task.id);
         }
       });
