@@ -83,3 +83,28 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 20;
+  background: white;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.map-container {
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  z-index: 10;
+  transition: transform 0.3s ease-in-out;
+}
+
+.map-container.hidden {
+  transform: translateY(-100%);
+}
