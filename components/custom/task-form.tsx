@@ -58,16 +58,19 @@ const TaskForm = ({ taskId }: Props) => {
       dueDate: taskToEdit ? new Date(taskToEdit.dueDate) : new Date(),
       priority: taskToEdit?.priority || "",
       location: taskToEdit?.location || "",
+      lat: taskToEdit?.lat, // Use undefined if not set
+      lng: taskToEdit?.lng, // Use undefined if not set
     },
   });
 
   const [mapOpen, setMapOpen] = useState(false);
-  const [markerPosition, setMarkerPosition] = useState<[number, number] | null>(
-    null
+  const [markerPosition, setMarkerPosition] = useState<[number, number] | undefined>(
+    taskToEdit && taskToEdit.lat !== undefined && taskToEdit.lng !== undefined
+      ? [taskToEdit.lat, taskToEdit.lng]
+      : undefined
   );
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState(""); // New state for user input feedback
-  const mapRef = useRef(null);
 
   const searchLocation = async (query: string) => {
     setSearchQuery(query); // Update the search query as the user types
@@ -116,6 +119,8 @@ const TaskForm = ({ taskId }: Props) => {
     const { lat, lng } = result.geometry.location;
     setMarkerPosition([lat, lng]);
     form.setValue("location", result.description);
+    form.setValue("lat", lat);  // Store lat
+    form.setValue("lng", lng);  // Store lng
     setSearchQuery(result.description);
     setMapOpen(false);
   };
@@ -275,7 +280,7 @@ const TaskForm = ({ taskId }: Props) => {
           {mapOpen && (
             <div className="mt-4 relative overflow-hidden rounded-md shadow-md z-10">
               <MapContainer
-                center={markerPosition || [51.505, -0.09]}
+                center={markerPosition || [51.505, -0.09]}  // Default coordinates if markerPosition is undefined
                 zoom={13}
                 style={{ height: "300px", width: "100%", position: "relative" }}
                 className="rounded-md"
@@ -285,7 +290,6 @@ const TaskForm = ({ taskId }: Props) => {
               </MapContainer>
             </div>
           )}
-
           <div className="flex w-full justify-end">
             <Button type="submit" className="rounded-md">
               Save

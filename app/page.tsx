@@ -17,6 +17,8 @@ export type Task = {
   priority: string;
   completed?: boolean;
   location: string;
+  lat?: number; // Optional latitude
+  lng?: number; // Optional longitude
 };
 
 const Home: React.FC = () => {
@@ -77,7 +79,6 @@ const Home: React.FC = () => {
             <SwipeableCard
               key={task.id}
               task={task}
-              searchTerm={debouncedSearchTerm}
             />
           ))}
         </div>

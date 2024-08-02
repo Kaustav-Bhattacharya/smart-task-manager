@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Pen, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
 
 type Props = {};
@@ -96,6 +97,17 @@ const TaskDetail = (props: Props) => {
             />
           </p>
         </div>
+        <div className="mt-4">
+        <MapContainer
+          center={[taskToDisplay.lat, taskToDisplay.lng]}
+          zoom={13}
+          style={{ height: "300px", width: "100%", position: "relative" }}
+          className="rounded-md"
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[taskToDisplay.lat, taskToDisplay.lng]} />
+        </MapContainer>
+      </div>
       </Card>
     </div>
   );

@@ -13,4 +13,6 @@ export const taskFormSchema = z.object({
   }),
   priority: z.string().min(1, { message: "Priority is required" }),
   location: z.string().min(1, { message: "Location is required" }),
+  lat: z.number().optional(), // Optional latitude
+  lng: z.number().optional(), // Optional longitude
 });
