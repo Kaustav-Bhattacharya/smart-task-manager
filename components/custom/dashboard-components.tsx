@@ -122,11 +122,11 @@ const UpcomingTasks = ({ tasks }: { tasks: Task[] }) => {
   );
 };
 
-const DashboardTaskCard = ({ task }: { task: Task }) => {
+const DashboardTaskCard = ({ task }: {task:Task}) => {
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white">
+    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white dark:bg-gray-800">
       <CardHeader className="flex justify-between items-start p-4">
-        <h3 className="text-xl font-semibold">{task.title}</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{task.title}</h3>
         <Badge
           className={cn(
             "px-2 py-1 rounded-full",
@@ -138,14 +138,14 @@ const DashboardTaskCard = ({ task }: { task: Task }) => {
       </CardHeader>
 
       <CardContent className="space-y-1">
-        <p className="text-gray-700">{task.description}</p>
+        <p className="text-gray-700 dark:text-gray-300">{task.description}</p>
         <div className="flex items-center">
-          <MapPin size={16} className="text-gray-500 mr-2" />
-          <span className="text-sm text-gray-700">{task.location}</span>
+          <MapPin size={16} className="text-gray-500 dark:text-gray-400 mr-2" />
+          <span className="text-sm text-gray-700 dark:text-gray-300">{task.location}</span>
         </div>
         <div className="flex items-center">
-          <Calendar size={16} className="text-gray-500 mr-2" />
-          <span className="text-sm text-gray-700">
+          <Calendar size={16} className="text-gray-500 dark:text-gray-400 mr-2" />
+          <span className="text-sm text-gray-700 dark:text-gray-300">
             Due: {new Date(task.dueDate).toLocaleDateString()}
           </span>
         </div>
@@ -153,11 +153,13 @@ const DashboardTaskCard = ({ task }: { task: Task }) => {
           {task.completed ? (
             <CheckCircle size={20} className="text-green-500 mr-2" />
           ) : (
-            <Circle size={20} className="text-gray-400 mr-2" />
+            <Circle size={20} className="text-gray-400 dark:text-gray-600 mr-2" />
           )}
           <span
             className={cn("text-sm text-gray-700", {
               "text-green-500": task.completed,
+              "dark:text-green-400": task.completed,
+              "dark:text-gray-300": !task.completed,
             })}
           >
             {task.completed ? "Completed" : "Pending"}
@@ -167,5 +169,6 @@ const DashboardTaskCard = ({ task }: { task: Task }) => {
     </Card>
   );
 };
+
 
 export { PriorityBucket, StatusBucket, DashboardTaskCard, UpcomingTasks };

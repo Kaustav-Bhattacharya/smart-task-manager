@@ -29,10 +29,10 @@ const Home: React.FC = () => {
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
 
   const filteredTasks = tasks
-  .filter((task) =>
-    task.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-  )
-  .sort((a, b) => (a.completed ? 1 : 0) - (b.completed ? 1 : 0));
+    .filter((task) =>
+      task.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    )
+    .sort((a, b) => (a.completed ? 1 : 0) - (b.completed ? 1 : 0));
 
   const handleAddTask = () => {
     router.push(`/new-task`);
@@ -45,20 +45,22 @@ const Home: React.FC = () => {
   if (tasks.length <= 0) {
     return (
       <div className="container w-full">
-        <header className="bg-white shadow-md p-4 flex items-center justify-between sticky">
-          <h1 className="text-2xl font-bold">Task Manager</h1>
+        <header className="bg-white dark:bg-gray-900 shadow-md p-4 flex items-center justify-between sticky">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Task Manager</h1>
           <Input
             type="text"
             placeholder="Search tasks..."
-            className="border rounded p-2 w-[50%] lg:w-[30%]"
+            className="border rounded p-2 w-[50%] lg:w-[30%] dark:bg-gray-800 dark:text-gray-100"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </header>
-        <div className="font-semibold text-xl p-5">Start by adding tasks.</div>
+        <div className="font-semibold text-xl p-5 text-gray-900 dark:text-gray-100">
+          Start by adding tasks.
+        </div>
         <Button
           onClick={handleAddTask}
-          className="fixed bottom-10 right-14 bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-white shadow-lg hover:bg-purple-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 z-10"
+          className="fixed bottom-10 right-14 bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-blue-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 z-10"
         >
           <Plus size={26} />
         </Button>
@@ -67,13 +69,13 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen container bg-gray-100">
-      <header className="bg-white shadow-md p-4 flex items-center justify-between sticky">
-        <h1 className="text-2xl font-bold">Task Manager</h1>
+    <div className="min-h-screen container bg-gray-100 dark:bg-gray-900">
+      <header className="bg-white dark:bg-gray-900 shadow-md p-4 flex items-center justify-between sticky">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Task Manager</h1>
         <Input
           type="text"
           placeholder="Search tasks..."
-          className="border rounded p-2 w-[50%] lg:w-[30%]"
+          className="border rounded p-2 w-[50%] lg:w-[30%] dark:bg-gray-800 dark:text-gray-100"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -89,7 +91,7 @@ const Home: React.FC = () => {
         </div>
         <Button
           onClick={handleAddTask}
-          className="fixed bottom-14 md:bottom-10 right-1 md:right-5 bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-white shadow-lg hover:bg-purple-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 z-10"
+          className="fixed bottom-14 md:bottom-10 right-1 md:right-5 bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-blue-700 active:shadow-none active:translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 z-10"
         >
           <Plus size={26} />
         </Button>

@@ -23,13 +23,13 @@ interface SwipeableCardProps {
 export const getPriorityColor = (priority: string | undefined) => {
   switch (priority) {
     case "High":
-      return "bg-red-500 hover:bg-red-600";
+      return "bg-red-500 text-white dark:bg-red-600";
     case "Medium":
-      return "bg-yellow-500 hover:bg-yellow-600";
+      return "bg-yellow-500 text-white dark:bg-yellow-600";
     case "Low":
-      return "bg-green-500 hover:bg-green-600";
+      return "bg-green-500 text-white dark:bg-green-600";
     default:
-      return "bg-gray-500 hover:bg-gray-600";
+      return "bg-gray-500 text-white dark:bg-gray-600";
   }
 };
 
@@ -87,7 +87,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
     <Card
       {...handlers}
       className={cn(
-        "relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white",
+        "relative z-10 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg bg-white dark:bg-gray-800",
         className
       )}
     >
@@ -95,23 +95,24 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
         className={cn(
           "p-4 rounded-lg transition-transform duration-300 ease-in-out",
           {
-            "bg-purple-100 text-gray-400": task.completed,
-            "bg-purple-300": !task.completed,
+            "bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500": task.completed,
+            "bg-gray-50 dark:bg-gray-900": !task.completed,
             "transform -translate-x-10": swiped,
             "transform translate-x-0": !swiped,
           }
         )}
       >
         <div className="flex items-center justify-between">
-          <Link href={`/task-detail/${task.id}`} className="flex-1">
-            <h2 className="text-xl font-semibold flex items-center gap-3">
+          <Link href={`/task-detail/${task.id}`}>
+            <h2 className="text-xl font-semibold flex items-center gap-3 text-gray-900 dark:text-gray-100">
               {task.title}
               <Badge
                 className={cn(
-                  "px-2 py-1 rounded-full text-white",
+                  "px-2 py-1 rounded-full",
                   getPriorityColor(task.priority),
                   {
-                    "bg-gray-400": task.completed,
+                    "bg-gray-400 text-gray-100": task.completed,
+                    "dark:bg-gray-500 dark:text-gray-200": task.completed,
                   }
                 )}
               >
@@ -119,8 +120,8 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
               </Badge>
             </h2>
             <p
-              className={cn("text-gray-500 text-sm", {
-                "text-gray-300": task.completed,
+              className={cn("text-gray-600 text-sm", {
+                "text-gray-500 dark:text-gray-400": task.completed,
               })}
             >
               Due: {format(new Date(task.dueDate), "MMMM dd, yyyy")}
@@ -140,14 +141,14 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ task, className }) => {
         <Button
           onClick={handleEdit}
           variant="ghost"
-          className="text-green-500 hover:bg-transparent hover:text-green-500"
+          className="text-blue-500 hover:bg-transparent hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
         >
           <Pen size={15} />
         </Button>
         <Button
           onClick={handleRemove}
           variant="ghost"
-          className="text-red-500 hover:bg-transparent hover:text-red-500"
+          className="text-red-500 hover:bg-transparent hover:text-red-600 dark:text-red-400 dark:hover:text-red-500"
         >
           <Trash size={15} />
         </Button>

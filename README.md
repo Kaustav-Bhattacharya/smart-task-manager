@@ -1,24 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Task Management App
+
+This is a Task Management application built with Next.js, React, Redux, and TypeScript. The app allows users to create, update, and manage tasks with features like notifications, geolocation, and dark mode.
+
+## Features
+
+- **Task Management**: Create, update, and delete tasks.
+- **Notifications**: Enable or disable notifications for upcoming tasks.
+- **Geolocation**: Notify users of tasks within a 5 km radius.
+- **Dark Mode**: Toggle between light and dark themes.
+- **Dashboard**: Visualize tasks with charts and priority buckets.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/task-management-app.git
+   cd task-management-app
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+### Running the Development Server
+
+Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `app/`: Contains the main pages and components of the application.
+- `components/`: Reusable UI components.
+- `lib/`: Utility functions and hooks.
+- `lib/redux/`: Redux store and slices.
+- `public/`: Static assets.
+- `styles/`: CSS styles for the application.
 
 ## Learn More
 

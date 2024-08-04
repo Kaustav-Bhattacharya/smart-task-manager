@@ -41,29 +41,31 @@ const TaskDetail = (props: Props) => {
 
   const handleToggleComplete = () => {
     dispatch(toggleTaskCompletion(taskToDisplay.id));
-    const title = taskToDisplay?.completed ? "Task Marked Incomplete.": "Task Marked Completed"
+    const title = taskToDisplay?.completed ? "Task Marked Incomplete." : "Task Marked Completed";
     toast({
       title,
     });
   };
 
-
   return (
     <div className="container max-w-[768px]">
       <Header heading="Task Details" />
       <Card
-        className={cn("bg-purple-300 rounded shadow-md p-4 min-h-[60vh]", {
-          "text-gray-600": taskToDisplay?.completed,
-        })}
+        className={cn(
+          "rounded shadow-md p-4 min-h-[60vh] bg-white dark:bg-gray-800",
+          {
+            "text-gray-600 dark:text-gray-400": taskToDisplay?.completed,
+          }
+        )}
       >
-        <h2 className="text-xl font-bold flex items-center gap-3 w-full justify-between mt-3 mb-1">
+        <h2 className="text-xl font-bold flex items-center gap-3 w-full justify-between mt-3 mb-1 text-gray-900 dark:text-gray-100">
           {taskToDisplay?.title}
           <span className="flex gap-3 items-center">
             <Pen
               size={15}
               fill="true"
               onClick={handleEdit}
-              className="cursor-pointer"
+              className="cursor-pointer text-gray-900 dark:text-gray-100"
             />
             <Trash
               size={15}
@@ -72,15 +74,17 @@ const TaskDetail = (props: Props) => {
             />
           </span>
         </h2>
-        <p className="font-light italic">{taskToDisplay?.description}</p>
+        <p className="font-light italic text-gray-700 dark:text-gray-300">
+          {taskToDisplay?.description}
+        </p>
         <div className="flex items-center justify-between mt-8 flex-wrap space-y-4">
-          <p className="font-medium italic text-sm text-gray-600 flex items-center text-nowrap flex-wrap">
+          <p className="font-medium italic text-sm flex items-center text-nowrap flex-wrap text-gray-700 dark:text-gray-300">
             Due: {format(new Date(taskToDisplay.dueDate), "EEEE, MMM dd, yyyy")}
             <Badge
               className={cn(
-                `${getPriorityColor(taskToDisplay?.priority)} md:ml-4 mr-1 text-nowrap`,
+                `${getPriorityColor(taskToDisplay?.priority)} md:ml-4 mr-1 text-nowrap text-white`,
                 {
-                  "bg-gray-400 transition-colors": taskToDisplay?.completed,
+                  "bg-gray-500 transition-colors": taskToDisplay?.completed,
                 }
               )}
             >
@@ -88,7 +92,7 @@ const TaskDetail = (props: Props) => {
             </Badge>
             <span className="text-nowrap hidden lg:block">(no pressure)*</span>
           </p>
-          <p className="flex items-center gap-3 text-xs italic text-gray-500">
+          <p className="flex items-center gap-3 text-xs italic text-gray-600 dark:text-gray-400">
             Already completed?{" "}
             <Checkbox
               className="size-5 transition-all ease-in"
@@ -98,16 +102,16 @@ const TaskDetail = (props: Props) => {
           </p>
         </div>
         <div className="mt-4">
-        <MapContainer
-          center={[taskToDisplay.lat, taskToDisplay.lng]}
-          zoom={13}
-          style={{ height: "300px", width: "100%", position: "relative" }}
-          className="rounded-md"
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[taskToDisplay.lat, taskToDisplay.lng]} />
-        </MapContainer>
-      </div>
+          <MapContainer
+            center={[taskToDisplay.lat, taskToDisplay.lng]}
+            zoom={13}
+            style={{ height: "300px", width: "100%", position: "relative" }}
+            className="rounded-md"
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <Marker position={[taskToDisplay.lat, taskToDisplay.lng]} />
+          </MapContainer>
+        </div>
       </Card>
     </div>
   );
