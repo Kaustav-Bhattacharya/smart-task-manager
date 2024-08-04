@@ -4,6 +4,7 @@ import "./globals.css";
 import StoreProvider from "@/lib/redux/store-provider";
 import Navigation from "@/components/custom/navigation-bar";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <StoreProvider>
-        <body className={inter.className}>
-          {children} 
-          <Navigation />
-          <Toaster/>
-        </body>
-      </StoreProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <StoreProvider>
+          <body className={inter.className}>
+            {children}
+            <Navigation />
+            <Toaster />
+          </body>
+        </StoreProvider>
+      </ThemeProvider>
     </html>
   );
 }
