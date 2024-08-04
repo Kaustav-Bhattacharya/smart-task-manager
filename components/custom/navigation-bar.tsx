@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type Props = {};
 
 const ROUTES = [
-  { path: "/", label: "Home" },
+  { path: "/task-list", label: "Home" },
   { path: "/dashboard", label: "Dashboard" },
   { path: "/settings", label: "Settings" },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import { Task } from "@/app/page";
+
 import { removeTask, toggleTaskCompletion } from "@/lib/redux/taskSlice";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -14,6 +14,7 @@ import { Card } from "@/components/ui/card";
 import { format } from "date-fns";
 import { useToast } from "../ui/use-toast";
 import Link from "next/link";
+import { Task } from "@/app/task-list/page";
 
 interface SwipeableCardProps {
   task: Task;

@@ -258,17 +258,17 @@ const TaskForm = ({ taskId }: Props) => {
                       onFocus={() => setMapOpen(true)}
                     />
                     {mapOpen && searchResults.length > 0 && (
-                      <ul className="absolute bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto w-full mt-1 z-20">
-                        {searchResults.map((result) => (
-                          <li
-                            key={result.place_id}
-                            className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                            onClick={() => handleSearchSelect(result)}
-                          >
-                            {result.description}
-                          </li>
-                        ))}
-                      </ul>
+                     <ul className="absolute border rounded-md shadow-lg max-h-60 overflow-y-auto w-full mt-1 z-20 bg-[#CACEFF] border-[#B0B0FF] dark:bg-[#1F1B33] dark:border-[#38304E]">
+                     {searchResults.map((result) => (
+                       <li
+                         key={result.place_id}
+                         className="px-4 py-2 cursor-pointer hover:bg-[#B0B0FF] dark:hover:bg-[#3B3550] transition-colors"
+                         onClick={() => handleSearchSelect(result)}
+                       >
+                         {result.description}
+                       </li>
+                     ))}
+                   </ul>                   
                     )}
                   </div>
                 </FormControl>
