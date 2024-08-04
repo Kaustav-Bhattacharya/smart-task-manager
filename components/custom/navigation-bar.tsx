@@ -32,17 +32,20 @@ const Navigation = (props: Props) => {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full bg-purple-800 text-[#EAEAEA] p-2 flex justify-evenly">
+    <nav className="fixed bottom-0 left-0 w-full p-2 flex justify-evenly items-center shadow-md bg-[#CACEFF] dark:bg-[#2D2D2D] text-[#2D2D2D] dark:text-[#CACEFF]">
       {ROUTES.map((route) => (
         <Link
           key={route.path}
           href={route.path}
-          className={cn("flex flex-col items-center px-4", {
-            "text-[#00BFFF] transition-all ease-in-out": isActive(route.path),
-          })}
+          className={cn(
+            "flex flex-col items-center px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg",
+            {
+              "text-[#0044FF] dark:text-[#0044FF]": isActive(route.path),
+            }
+          )}
         >
-            {genIcon(route.label)}
-          {route.label}
+          {genIcon(route.label)}
+          <span className="hidden sm:block mt-1 text-sm font-medium">{route.label}</span>
         </Link>
       ))}
     </nav>
