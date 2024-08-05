@@ -9,13 +9,17 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter()
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if(password==="@dminPasswor6" && email==="admin")
-      router.push("/task-list")
-    console.log("Login attempted with:", { email, password });
+    if (email === "admin" && password === "@dminPasswor6") {
+      setError(null); // Clear error if any
+      router.push("/task-list");
+    } else {
+      setError("Incorrect email or password. Please try again.");
+    }
   };
 
   return (
@@ -34,6 +38,12 @@ const Login = () => {
       >
         <h2 className="text-3xl font-bold text-center">Login</h2>
 
+        {error && (
+          <div className="text-red-600 dark:text-red-400 text-center">
+            {error}
+          </div>
+        )}
+
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor="email">
             Email
@@ -49,10 +59,7 @@ const Login = () => {
         </div>
 
         <div>
-          <label
-            className="block text-sm font-medium mb-1"
-            htmlFor="password"
-          >
+          <label className="block text-sm font-medium mb-1" htmlFor="password">
             Password
           </label>
           <Input
