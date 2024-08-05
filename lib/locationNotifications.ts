@@ -1,4 +1,4 @@
-import { Task } from "@/app/page";
+import { Task } from "@/app/task-list/page";
 
 export const getUserLocation = (): Promise<GeolocationPosition> => {
     return new Promise((resolve, reject) => {

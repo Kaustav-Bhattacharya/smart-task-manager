@@ -1,4 +1,4 @@
-import { Task } from "@/app/page";
+import { Task } from "@/app/task-list/page";
 import { cn } from "@/lib/utils";
 import SwipeableCard, { getPriorityColor } from "./swipable-card";
 import { Card, CardContent, CardHeader } from "../ui/card";

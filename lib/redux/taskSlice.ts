@@ -1,4 +1,4 @@
-import { Task } from "@/app/page";
+import { Task } from "@/app/task-list/page";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TaskState {
