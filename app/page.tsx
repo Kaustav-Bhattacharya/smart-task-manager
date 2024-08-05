@@ -18,7 +18,7 @@ const Login = () => {
       setError(null); // Clear error if any
       router.push("/task-list");
     } else {
-      setError("Incorrect email or password. Please try again.");
+      setError("Incorrect username or password. Please try again.");
     }
   };
 
@@ -45,11 +45,11 @@ const Login = () => {
         )}
 
         <div>
-          <label className="block text-sm font-medium mb-1" htmlFor="email">
-            Email
+          <label className="block text-sm font-medium mb-1" htmlFor="username">
+            Username
           </label>
           <Input
-            id="email"
+            id="username"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
