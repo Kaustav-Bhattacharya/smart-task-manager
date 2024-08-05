@@ -18,7 +18,6 @@ import {
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { Task } from "@/app/page";
 
 import {
   Card,
@@ -32,6 +31,7 @@ import {
   ChartContainer,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { Task } from "@/app/task-list/page";
 
 // Define the type for aggregated data
 interface AggregatedData {
