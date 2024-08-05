@@ -1,6 +1,6 @@
 # Task Management App
 
-This is a Task Management application built with Next.js, React, Redux, and TypeScript. The app allows users to create, update, and manage tasks with features like notifications, geolocation, and dark mode.
+This is a Task Management application built with Next.js, React, Redux, and TypeScript. The app allows users to create, update, and manage tasks with features like notifications, geolocation, dark mode, and map integration.
 
 ## Features
 
@@ -9,6 +9,7 @@ This is a Task Management application built with Next.js, React, Redux, and Type
 - **Geolocation**: Notify users of tasks within a 5 km radius.
 - **Dark Mode**: Toggle between light and dark themes.
 - **Dashboard**: Visualize tasks with charts and priority buckets.
+- **Map Integration**: View task locations on a map.
 
 ## Getting Started
 
@@ -69,3 +70,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## License
+
+This project is licensed under the MIT License.
